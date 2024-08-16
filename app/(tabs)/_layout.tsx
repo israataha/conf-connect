@@ -4,23 +4,19 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function TabLayout() {
   return (
-    <Tabs>
+    <Tabs screenOptions={{ tabBarShowLabel: false }}>
       <Tabs.Screen
         name="conferences"
         options={{
           title: "Conferences",
-          tabBarIcon: ({ color, size }) => {
-            return <Ionicons name="list" size={24} color="black" />;
-          },
+          tabBarIcon: ({ color, size }) => <Ionicons name="list" size={24} color="black" />,
         }}
       />
       <Tabs.Screen
         name="connections"
         options={{
           title: "Connections",
-          tabBarIcon: ({ color, size }) => {
-            return <Ionicons name="people-sharp" size={24} color="black" />;
-          },
+          tabBarIcon: ({ color, size }) => <Ionicons name="people-sharp" size={24} color="black" />,
         }}
       />
     </Tabs>
