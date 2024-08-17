@@ -1,5 +1,5 @@
-import { View, Text, FlatList, StyleSheet, TouchableOpacity } from "react-native";
-import React from "react";
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, TextInput } from "react-native";
+import React, { useState } from "react";
 import { Conference } from "../../../types";
 import { Link } from "expo-router";
 import { conferences } from "../../../data/conferences";
@@ -30,14 +30,59 @@ const ConferenceCard = ({ conference }: ConferenceProps) => (
 );
 
 export default function Conferences() {
+  const [search, setSearch] = useState("");
+  const [confereceList, setConferenceList] = useState(conferences);
+
+  const handleSearch = (searchTerm: string) => {
+    let filteredList = conferences;
+
+    if (searchTerm) {
+      filteredList = conferences.filter((conference) =>
+        conference.name.toLowerCase().includes(searchTerm.toLowerCase()),
+      );
+    }
+
+    setSearch(searchTerm);
+    setConferenceList(filteredList);
+  };
   return (
-    <View>
-      <FlatList data={conferences} renderItem={({ item }) => <ConferenceCard conference={item} key={item.id} />} />
-    </View>
+    <FlatList
+      ListHeaderComponent={
+        <TextInput
+          value={search}
+          style={styles.textInput}
+          onChangeText={handleSearch}
+          placeholder="Search"
+          autoCapitalize="none"
+        />
+      }
+      style={styles.container}
+      contentContainerStyle={styles.contentContainer}
+      data={confereceList}
+      renderItem={({ item }) => <ConferenceCard conference={item} key={item.id} />}
+    />
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#fff",
+    flex: 1,
+    paddingTop: 12,
+  },
+  contentContainer: {
+    paddingBottom: 24,
+  },
+  textInput: {
+    borderColor: "#ccc",
+    borderWidth: 2,
+    padding: 12,
+    fontSize: 18,
+    borderRadius: 50,
+    marginHorizontal: 12,
+    marginBottom: 12,
+    backgroundColor: "#fff",
+  },
   itemContainer: {
     padding: 15,
     borderBottomWidth: 1,

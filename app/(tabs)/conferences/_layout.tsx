@@ -14,6 +14,7 @@ export default function Layout() {
         name="[conference]"
         options={{
           title: "Conference Details",
+          headerBackTitleVisible: false,
         }}
       />
     </Stack>
