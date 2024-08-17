@@ -1,8 +1,8 @@
 import { View, Text, FlatList, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
-import { Conference } from "../../types";
+import { Conference } from "../../../types";
 import { Link } from "expo-router";
-import { conferences } from "../../data/conferences";
+import { conferences } from "../../../data/conferences";
 
 type ConferenceProps = {
   conference: Conference;
