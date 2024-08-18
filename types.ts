@@ -4,4 +4,6 @@ export type Conference = {
   location: string;
   startDate: string;
   endDate: string;
+  website: string;
+  tags?: string[];
 };
