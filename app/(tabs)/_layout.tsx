@@ -1,8 +1,15 @@
 import React from "react";
-import { Tabs } from "expo-router";
+import { Redirect, Tabs } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useAuth } from "../../providers/AuthProvider";
 
 export default function Layout() {
+  const { isAuthenticated } = useAuth();
+
+  if (!isAuthenticated) {
+    return <Redirect href={"/(auth)/sign-in"} />;
+  }
+
   return (
     <Tabs screenOptions={{ tabBarShowLabel: false }}>
       <Tabs.Screen
@@ -24,6 +31,13 @@ export default function Layout() {
         name="connections"
         options={{
           title: "Connections",
+          tabBarIcon: ({ color, size }) => <Ionicons name="people-sharp" size={size} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="account"
+        options={{
+          title: "Account",
           tabBarIcon: ({ color, size }) => <Ionicons name="people-sharp" size={size} color={color} />,
         }}
       />

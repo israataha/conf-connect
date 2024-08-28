@@ -56,9 +56,7 @@ export default function Conferences() {
     let filteredList = conferences;
 
     if (searchTerm) {
-      filteredList = conferences.filter((conference) =>
-        conference.name.toLowerCase().includes(searchTerm.toLowerCase()),
-      );
+      filteredList = conferences.filter(conference => conference.name.toLowerCase().includes(searchTerm.toLowerCase()));
     }
 
     setSearch(searchTerm);

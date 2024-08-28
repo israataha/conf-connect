@@ -6,7 +6,7 @@ import { useLocalSearchParams } from "expo-router";
 
 export default function Conference() {
   const params = useLocalSearchParams();
-  const conference = conferences.find((conference) => conference.id === params.conferenceId);
+  const conference = conferences.find(conference => conference.id === params.conferenceId);
   return (
     <>
       {conference ? (
